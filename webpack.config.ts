@@ -1,13 +1,13 @@
-import * as webpack from 'webpack';
-import { resolve, join } from 'path';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as webpack from 'webpack'
+import { resolve, join } from 'path'
+import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 
-const { HotModuleReplacementPlugin } = webpack;
-const port = 3000;
-const context = __dirname + '/src';
+const { HotModuleReplacementPlugin } = webpack
+const port = 3000
+const context = __dirname + '/src'
 
 interface WebpackEnvironment {
-  NODE_ENV: string;
+  NODE_ENV: string
 }
 
 module.exports = (env: WebpackEnvironment, argv: { mode: string }) => {
@@ -17,7 +17,7 @@ module.exports = (env: WebpackEnvironment, argv: { mode: string }) => {
       `webpack-dev-server/client?http://localhost:${port}`,
       'webpack/hot/only-dev-server',
       './index'
-    ];
+    ]
 
   const config: webpack.Configuration = {
     name: 'client',
@@ -33,7 +33,7 @@ module.exports = (env: WebpackEnvironment, argv: { mode: string }) => {
     resolve: {
       extensions: ['.ts', '.tsx', '.js', 'jsx']
     },
-    devtool: argv.mode === 'production' ? 'source-map' : 'cheap-eval-source-map',
+    devtool: argv.mode === 'production' ? 'source-map' : 'inline-source-map',
     module: {
       rules: [
         {
@@ -43,8 +43,8 @@ module.exports = (env: WebpackEnvironment, argv: { mode: string }) => {
           exclude: /node_modules/,
           options: {
             configFile: resolve(__dirname, './tslint.json'),
-            emitErrors: true,
-            failOnHint: true,
+            emitErrors: argv.mode === 'production',
+            failOnHint: argv.mode === 'production',
             typeCheck: true
           }
         },
@@ -64,15 +64,15 @@ module.exports = (env: WebpackEnvironment, argv: { mode: string }) => {
       }),
       new HotModuleReplacementPlugin()
     ]
-  };
+  }
 
   if (argv.mode === 'development') {
     config.devServer = {
       contentBase: join(__dirname, 'dist'),
         compress: true,
-        port: 9000
-    };
+        port
+    }
   }
 
-  return config;
-};
+  return config
+}

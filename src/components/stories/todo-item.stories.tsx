@@ -1,6 +1,6 @@
-import { storiesOf } from '@storybook/preact';
-import { h } from 'preact';
-import TodoItem from '../todo-item';
+import { storiesOf } from '@storybook/preact'
+import { h } from 'preact'
+import TodoItem from '../todo-item'
 
 storiesOf('Todo Item', module)
   .add('with text', () => {
@@ -9,5 +9,5 @@ storiesOf('Todo Item', module)
       <TodoItem
         text="pick up milk"
         />
-    );
-  });
+    )
+  })

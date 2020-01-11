@@ -21,6 +21,7 @@
     "start": "webpack-dev-server --mode=development --progress --config ./webpack.config.ts",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
+    "tslint-autofix": "tslint --fix -p tslint.json",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "e2e": "[ ! -z \"$DEPLOY_URL\" ] && cypress run || echo 'e2e only runs on Netlify'",
@@ -63,7 +64,7 @@
     "webpack-dev-server": "3.10.1"
   },
   "dependencies": {
-    "preact": "8.5.3",
+    "preact": "^10.2.1",
     "tslib": "1.10.0"
   }
 }

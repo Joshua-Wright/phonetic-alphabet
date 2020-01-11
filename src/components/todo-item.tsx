@@ -1,9 +1,9 @@
-import { h } from 'preact';
+import { h } from 'preact'
 
 interface TodoItemProps {
-  text: string;
+  text: string
 }
 
-const TodoItem = ({text}: TodoItemProps) => (<li data-cy="todo-item">{text}</li>);
+const TodoItem = ({text}: TodoItemProps) => (<li data-cy="todo-item">{text}</li>)
 
-export default TodoItem;
+export default TodoItem
